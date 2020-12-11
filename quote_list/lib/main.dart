@@ -12,11 +12,12 @@ class QuoteList extends StatefulWidget {
 class _QuoteListState extends State<QuoteList> {
 
   List<String> quotes = [
-    'Be strong, stay safe, be real.',
-    'Sleep, wake up, eat, code, repeat.',
-    'Never settle for less',
-    'Always stay out of the comfort zone',
+    'Sleep, wake up, eat, code.',
+    'Stay safe, stay at home at all times',
+    'Never settle for less.',
+    'Keep dreaming.',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,18 @@ class _QuoteListState extends State<QuoteList> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: quotes.map((quote) => Container(
+        children: (quotes==null || quotes.length==0) ? [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+          child: Text(
+            'NO QUOTES',
+            style: TextStyle(
+              color: Colors.cyanAccent,
+              backgroundColor: Colors.pinkAccent,
+            ),
+          ),
+        ),
+        ] : quotes.map((quote) => Container(
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
             child: Text(quote),
         )).toList(),

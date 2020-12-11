@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quote_list/quote.dart';
+import 'package:quote_list/quote_card.dart';
 
 void main() => runApp(MaterialApp(
   home: QuoteList(),
@@ -18,34 +19,6 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: 'Mania', text: 'Never settle for less.'),
     Quote(author: 'El Tazzo', text: 'Keep dreaming.'),
   ];
-
-  Widget quoteListTemplate(quote){
-    return Card(
-      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-      child: Padding(
-        padding: EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            Text(
-                quote.text,
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.grey[600],
-              ),
-            ),
-            SizedBox(height: 6.0,),
-            Text(
-              quote.author,
-              style: TextStyle(
-                fontSize: 14.0,
-                color: Colors.grey[800],
-              ),
-            ),
-          ],
-        )
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +43,7 @@ class _QuoteListState extends State<QuoteList> {
             ),
           ),
         ),
-        ] : quotes.map((quote) => quoteListTemplate(quote)).toList(),
+        ] : quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ),
     );
   }

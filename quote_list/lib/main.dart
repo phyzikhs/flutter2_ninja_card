@@ -43,7 +43,14 @@ class _QuoteListState extends State<QuoteList> {
             ),
           ),
         ),
-        ] : quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        ] : quotes.map((quote) => QuoteCard(
+            quote: quote,
+          delete: (){
+              setState( () {
+                quotes.remove(quote);
+              });
+          }
+        )).toList(),
       ),
     );
   }

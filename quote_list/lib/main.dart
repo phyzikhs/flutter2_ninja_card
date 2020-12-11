@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:quote_list/quote.dart';
 
 void main() => runApp(MaterialApp(
   home: QuoteList(),
@@ -11,11 +14,11 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
 
-  List<String> quotes = [
-    'Sleep, wake up, eat, code.',
-    'Stay safe, stay at home at all times',
-    'Never settle for less.',
-    'Keep dreaming.',
+  List<Quote> quotes = [
+    Quote(text: 'Sleep, wake up, eat, code.', author: 'Mania'),
+    Quote(text: 'Stay safe, stay at home at all times', author: 'President'),
+    Quote(text: 'Never settle for less.', author: 'Mido'),
+    Quote(text: 'Keep dreaming.', author: 'Swiper'),
   ];
 
   @override
@@ -43,7 +46,7 @@ class _QuoteListState extends State<QuoteList> {
         ),
         ] : quotes.map((quote) => Container(
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
-            child: Text(quote),
+            child: Text('${quote.text} - ${quote.author}'),
         )).toList(),
       ),
     );

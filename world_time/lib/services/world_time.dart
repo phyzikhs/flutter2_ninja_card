@@ -10,22 +10,28 @@ class WorldTime {
   WorldTime({this.location, this.flag, this.url});
 
   Future<void> getTime() async {
-    Response response = await get('http://worldtimeapi.org/api/timezone/${url}'); //http://worldtimeapi.org/api/timezone/Europe/Paris
-    Map data = jsonDecode(response.body);
+    try{
+      Response response = await get('http://worldtimeapi.org/api/timezone/${url}'); //http://worldtimeapi.org/api/timezone/Europe/Paris
+      Map data = jsonDecode(response.body);
 
-    // get properties from data
-    String datetime = data['datetime'];
-    String offset = data['utc_offset'].substring(0,3);
+      // get properties from data
+      String datetime = data['datetime'];
+      String offset = data['utc_offset'].substring(0,3);
 
-    // print(datetime);
-    // print(offset);
-    // print(data); // datetime: 2020-12-12T01:18:47.506709+01:00 // utc_offset: +02:00
+      // print(datetime);
+      // print(offset);
+      // print(data); // datetime: 2020-12-12T01:18:47.506709+01:00 // utc_offset: +02:00
 
-    // create DateTime object
-    DateTime now = DateTime.parse(datetime);
-    now = now.add( Duration(hours: int.parse(offset)) );
+      // create DateTime object
+      DateTime now = DateTime.parse(datetime);
+      now = now.add( Duration(hours: int.parse(offset)) );
 
-    // set time property
-    time = now.toString();
+      // set time property
+      time = now.toString();
+    } catch(e){
+      print('an error occurred: $e');
+      time = 'Could not get time data';
+    }
+
   }
 }

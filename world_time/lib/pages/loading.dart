@@ -40,9 +40,7 @@ class _LoadingState extends State<Loading> {
       url: instance['url'],
     );
     await ofInstance.getTime();
-    Navigator.pop(
-        context,
-        {
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
           'location': ofInstance.location,
           'flag': ofInstance.flag,
           'time': ofInstance.time,

@@ -26,15 +26,13 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime instance = locations[index];
 
     // await instance.getTime();
-    dynamic result = await Navigator.pushNamed(context, '/', arguments: {
+    Navigator.pushReplacementNamed(context, '/', arguments: {
       'time': instance.time,
       'location': instance.location,
       'isDayTime': instance.isDayTime,
       'flag': instance.flag,
       'url': instance.url,
     });
-    print('Location: Time found: $result');
-    Navigator.pop(context, result);
   }
 
   @override

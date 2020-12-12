@@ -21,9 +21,19 @@ class _LoadingState extends State<Loading> {
     });
   }
 
+  /*void updateTime(instance) async {
+    await instance.getTime();
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time,
+      'isDayTime': instance.isDayTime,
+    });
+  }*/
+
   @override
   void initState() {
-    // TODO: implement initState
+    // finished
     super.initState();
     setupWorldTime();
   }

@@ -13,7 +13,7 @@ class WorldTime {
 
   Future<void> getTime() async {
     try{
-      Response response = await get('http://worldtimeapi.org/api/timezone/${url}'); //http://worldtimeapi.org/api/timezone/Europe/Paris
+      Response response = await get('http://worldtimeapi.org/api/timezone/$url'); //http://worldtimeapi.org/api/timezone/Europe/Paris
       Map data = jsonDecode(response.body);
 
       // get properties from data

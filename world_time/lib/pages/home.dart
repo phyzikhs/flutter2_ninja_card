@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+  Home(BuildContext context);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -13,7 +15,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    print(data);
+    print('Home: Time found: $data');
 
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
     Color bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo[700];
@@ -36,7 +38,7 @@ class _HomeState extends State<Home> {
                       onPressed: () async {
                         dynamic result = await Navigator.pushNamed(context, '/location');
                         setState(() {
-                          data = {
+                          data = (result==null) ? data : {
                             'time': result['time'],
                             'location': result['location'],
                             'isDayTime': result['isDayTime'],

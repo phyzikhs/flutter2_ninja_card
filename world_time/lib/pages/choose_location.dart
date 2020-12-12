@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:world_time/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
+  ChooseLocation(BuildContext context);
+
   @override
   _ChooseLocationState createState() => _ChooseLocationState();
 }
@@ -9,6 +11,7 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
 
   List<WorldTime> locations = [
+    WorldTime(url: 'Africa/Johannesburg', location: 'Johannesburg', flag: 'rsa.png'),
     WorldTime(url: 'Europe/London', location: 'London', flag: 'uk.png'),
     WorldTime(url: 'Europe/Berlin', location: 'Athens', flag: 'greece.png'),
     WorldTime(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
@@ -21,13 +24,17 @@ class _ChooseLocationState extends State<ChooseLocation> {
 
   void updateTime(int index) async {
     WorldTime instance = locations[index];
-    await instance.getTime();
-    Navigator.pop(context, {
-      'location': instance.location,
-      'flag': instance.flag,
+
+    // await instance.getTime();
+    dynamic result = await Navigator.pushNamed(context, '/', arguments: {
       'time': instance.time,
+      'location': instance.location,
       'isDayTime': instance.isDayTime,
+      'flag': instance.flag,
+      'url': instance.url,
     });
+    print('Location: Time found: $result');
+    Navigator.pop(context, result);
   }
 
   @override

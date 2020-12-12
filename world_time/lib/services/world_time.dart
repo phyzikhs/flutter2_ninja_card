@@ -35,7 +35,8 @@ class WorldTime {
       time = DateFormat.jm().format(now);
     } catch(e){
       print('an error occurred: $e');
-      time = 'Could not get time data';
+      time = (time!=null) ? time : 'Could not get time data';
+      isDayTime = (isDayTime!=null) ? isDayTime : true;
     }
 
   }
